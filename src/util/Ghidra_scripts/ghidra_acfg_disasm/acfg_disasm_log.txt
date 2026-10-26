@@ -1,0 +1,136 @@
+elapsed_time: 0.005177736282348633
+INFO  Using log config file: jar:file:/home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: ghidra_acfg_disasm_log.txt (LoggingInitialization)  
+INFO  Loading user preferences: /home/antonio/.ghidra/.ghidra_11.0.3_PUBLIC/preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (1553 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (SSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: NativePRNGNonBlocking (SecureRandomFactory)  
+INFO  Trust manager disabled, cacerts have not been set (ApplicationTrustManagerFactory)  
+INFO  HEADLESS Script Paths:
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Debug/Debugger/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/GnuDemangler/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/VersionTracking/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Processors/JVM/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Processors/PIC/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Debug/Debugger-agent-frida/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/BSim/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/BytePatterns/ghidra_scripts
+    /home/antonio/.ghidra/.ghidra_11.0.3_PUBLIC/Extensions/pyhidra/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Processors/Atmel/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Processors/DATA/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/FileFormats/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Debug/Debugger-agent-dbgmodel-traceloader/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/PDB/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/SystemEmulation/ghidra_scripts
+    /home/antonio/binary_function_similarity/Ghidra_scripts/ghidra_acfg_disasm
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/FunctionID/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/Python/ghidra_scripts
+    /home/antonio/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/Decompiler/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/Base/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Processors/8051/ghidra_scripts (HeadlessAnalyzer)  
+INFO  HEADLESS: execution starts (HeadlessAnalyzer)  
+ERROR Could not find project: /home/antonio/binary_function_similarity/Ghidra_scripts/ghidra_acfg_disasm/GhidraProjs/DJI/p3x/arm32-unk-X-X_m0306 -- should already exist in -process mode. (HeadlessAnalyzer)  
+ERROR Abort due to Headless analyzer error: Could not find project: /home/antonio/binary_function_similarity/Ghidra_scripts/ghidra_acfg_disasm/GhidraProjs/DJI/p3x/arm32-unk-X-X_m0306 (HeadlessAnalyzer) java.io.IOException: Could not find project: /home/antonio/binary_function_similarity/Ghidra_scripts/ghidra_acfg_disasm/GhidraProjs/DJI/p3x/arm32-unk-X-X_m0306
+	at ghidra.app.util.headless.HeadlessAnalyzer.processLocal(HeadlessAnalyzer.java:436)
+	at ghidra.app.util.headless.AnalyzeHeadless.launch(AnalyzeHeadless.java:127)
+	at ghidra.GhidraLauncher.launch(GhidraLauncher.java:78)
+	at ghidra.Ghidra.main(Ghidra.java:54)
+ 
+openjdk version "17.0.11" 2024-04-16
+OpenJDK Runtime Environment (build 17.0.11+9-Debian-1deb12u1)
+OpenJDK 64-Bit Server VM (build 17.0.11+9-Debian-1deb12u1, mixed mode)
+INFO  Using log config file: jar:file:/home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: ghidra_acfg_disasm_log.txt (LoggingInitialization)  
+INFO  Loading user preferences: /home/antonio/.ghidra/.ghidra_11.0.3_PUBLIC/preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (1563 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (SSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: NativePRNGNonBlocking (SecureRandomFactory)  
+INFO  Trust manager disabled, cacerts have not been set (ApplicationTrustManagerFactory)  
+INFO  HEADLESS Script Paths:
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Debug/Debugger/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/GnuDemangler/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/VersionTracking/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Processors/JVM/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Processors/PIC/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Debug/Debugger-agent-frida/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/BSim/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/BytePatterns/ghidra_scripts
+    /home/antonio/.ghidra/.ghidra_11.0.3_PUBLIC/Extensions/pyhidra/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Processors/Atmel/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Processors/DATA/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/FileFormats/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Debug/Debugger-agent-dbgmodel-traceloader/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/PDB/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/SystemEmulation/ghidra_scripts
+    /home/antonio/binary_function_similarity/Ghidra_scripts/ghidra_acfg_disasm
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/FunctionID/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/Python/ghidra_scripts
+    /home/antonio/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/Decompiler/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/Base/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Processors/8051/ghidra_scripts (HeadlessAnalyzer)  
+INFO  HEADLESS: execution starts (HeadlessAnalyzer)  
+ERROR Could not find project: /home/antonio/binary_function_similarity/Ghidra_scripts/ghidra_acfg_disasm/GhidraProjs/Dataset-1-arm/px4_fmu/arm32-gcc-9-31_v6c.elf -- should already exist in -process mode. (HeadlessAnalyzer)  
+ERROR Abort due to Headless analyzer error: Could not find project: /home/antonio/binary_function_similarity/Ghidra_scripts/ghidra_acfg_disasm/GhidraProjs/Dataset-1-arm/px4_fmu/arm32-gcc-9-31_v6c.elf (HeadlessAnalyzer) java.io.IOException: Could not find project: /home/antonio/binary_function_similarity/Ghidra_scripts/ghidra_acfg_disasm/GhidraProjs/Dataset-1-arm/px4_fmu/arm32-gcc-9-31_v6c.elf
+	at ghidra.app.util.headless.HeadlessAnalyzer.processLocal(HeadlessAnalyzer.java:436)
+	at ghidra.app.util.headless.AnalyzeHeadless.launch(AnalyzeHeadless.java:127)
+	at ghidra.GhidraLauncher.launch(GhidraLauncher.java:78)
+	at ghidra.Ghidra.main(Ghidra.java:54)
+ 
+openjdk version "17.0.11" 2024-04-16
+OpenJDK Runtime Environment (build 17.0.11+9-Debian-1deb12u1)
+OpenJDK 64-Bit Server VM (build 17.0.11+9-Debian-1deb12u1, mixed mode)
+INFO  Using log config file: jar:file:/home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: ghidra_acfg_disasm_log.txt (LoggingInitialization)  
+INFO  Loading user preferences: /home/antonio/.ghidra/.ghidra_11.0.3_PUBLIC/preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (1554 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (SSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: NativePRNGNonBlocking (SecureRandomFactory)  
+INFO  Trust manager disabled, cacerts have not been set (ApplicationTrustManagerFactory)  
+INFO  HEADLESS Script Paths:
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Debug/Debugger/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/GnuDemangler/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/VersionTracking/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Processors/JVM/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Processors/PIC/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Debug/Debugger-agent-frida/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/BSim/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/BytePatterns/ghidra_scripts
+    /home/antonio/.ghidra/.ghidra_11.0.3_PUBLIC/Extensions/pyhidra/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Processors/Atmel/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Processors/DATA/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/FileFormats/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Debug/Debugger-agent-dbgmodel-traceloader/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/PDB/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/SystemEmulation/ghidra_scripts
+    /home/antonio/binary_function_similarity/Ghidra_scripts/ghidra_acfg_disasm
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/FunctionID/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/Python/ghidra_scripts
+    /home/antonio/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/Decompiler/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Features/Base/ghidra_scripts
+    /home/antonio/local/ghidra_11.0.3_PUBLIC/Ghidra/Processors/8051/ghidra_scripts (HeadlessAnalyzer)  
+INFO  HEADLESS: execution starts (HeadlessAnalyzer)  
+ERROR Could not find project: /home/antonio/binary_function_similarity/Ghidra_scripts/ghidra_acfg_disasm/GhidraProjs/Dataset-1-arm/px4_fmu/arm32-gcc-9-31_v4.elf -- should already exist in -process mode. (HeadlessAnalyzer)  
+ERROR Abort due to Headless analyzer error: Could not find project: /home/antonio/binary_function_similarity/Ghidra_scripts/ghidra_acfg_disasm/GhidraProjs/Dataset-1-arm/px4_fmu/arm32-gcc-9-31_v4.elf (HeadlessAnalyzer) java.io.IOException: Could not find project: /home/antonio/binary_function_similarity/Ghidra_scripts/ghidra_acfg_disasm/GhidraProjs/Dataset-1-arm/px4_fmu/arm32-gcc-9-31_v4.elf
+	at ghidra.app.util.headless.HeadlessAnalyzer.processLocal(HeadlessAnalyzer.java:436)
+	at ghidra.app.util.headless.AnalyzeHeadless.launch(AnalyzeHeadless.java:127)
+	at ghidra.GhidraLauncher.launch(GhidraLauncher.java:78)
+	at ghidra.Ghidra.main(Ghidra.java:54)
+ 
+openjdk version "17.0.11" 2024-04-16
+OpenJDK Runtime Environment (build 17.0.11+9-Debian-1deb12u1)
+OpenJDK 64-Bit Server VM (build 17.0.11+9-Debian-1deb12u1, mixed mode)
