@@ -3,7 +3,12 @@ import unittest
 from pathlib import Path
 
 from src.generate_report import create_report
-from src.models.api import Function, FunctionScore, NormalizedModelOutput
+from src.models.api import (
+    ComparisonError,
+    Function,
+    FunctionScore,
+    NormalizedModelOutput,
+)
 
 
 class GenerateReportTest(unittest.TestCase):
@@ -34,11 +39,18 @@ class GenerateReportTest(unittest.TestCase):
                 model_name="test-model",
                 normalized=normalized,
                 output_path=Path(temp_dir) / "report.json",
-                binary_a="a.bin",
-                binary_b="b.bin",
+                source_binary_a="input/a.bin",
+                source_binary_b="input/b.bin",
             )
 
-        self.assertEqual(report["schema_version"], "1.2")
+        self.assertEqual(report["schema_version"], "1.3")
+        self.assertEqual(
+            report["binaries"],
+            {
+                "a": {"path": "input/a.bin"},
+                "b": {"path": "input/b.bin"},
+            },
+        )
         self.assertEqual(report["top_n"], 3)
         self.assertEqual(report["min_similarity"], 0.0)
         self.assertEqual(
@@ -70,6 +82,45 @@ class GenerateReportTest(unittest.TestCase):
 
         self.assertEqual(report["top_n"], 1)
         self.assertEqual(len(report["functions"][0]["top_matches"]), 1)
+
+    def test_infers_binary_order_from_one_way_scores(self) -> None:
+        function_a = Function("a.bin", "0x10", "source")
+        function_b = Function("b.bin", "0x20", "target")
+        normalized = NormalizedModelOutput(
+            {function_a.key: function_a, function_b.key: function_b},
+            [FunctionScore(function_a, function_b, 0.5)],
+        )
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            report = create_report(
+                model_name="test-model",
+                normalized=normalized,
+                output_path=Path(temp_dir) / "report.json",
+            )
+
+        self.assertEqual(
+            report["binaries"],
+            {"a": {"path": "a.bin"}, "b": {"path": "b.bin"}},
+        )
+
+    def test_requires_orientation_for_symmetric_scores(self) -> None:
+        function_a = Function("a.bin", "0x10", "source")
+        function_b = Function("b.bin", "0x20", "target")
+        normalized = NormalizedModelOutput(
+            {function_a.key: function_a, function_b.key: function_b},
+            [
+                FunctionScore(function_a, function_b, 0.5),
+                FunctionScore(function_b, function_a, 0.5),
+            ],
+        )
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            with self.assertRaisesRegex(ComparisonError, "Cannot infer Binary A"):
+                create_report(
+                    model_name="test-model",
+                    normalized=normalized,
+                    output_path=Path(temp_dir) / "report.json",
+                )
 
     def test_omits_scores_less_than_or_equal_to_minimum(self) -> None:
         function_a = Function("a.bin", "0x10", "source")

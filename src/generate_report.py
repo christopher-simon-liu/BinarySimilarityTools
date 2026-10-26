@@ -25,7 +25,7 @@ from src.models.api import (
     canonical_path,
 )
 
-SCHEMA_VERSION = "1.2"
+SCHEMA_VERSION = "1.3"
 DEFAULT_TOP_N = 3
 DEFAULT_MIN_SIMILARITY = 0.0
 
@@ -56,13 +56,53 @@ def _resolve_binary(selector: str, functions: Iterable[Function]) -> str:
     return matches[0]
 
 
+def _resolve_binary_pair(
+    normalized: NormalizedModelOutput,
+    binary_a: str | None,
+    binary_b: str | None,
+    source_binary_a: str | None,
+    source_binary_b: str | None,
+) -> tuple[str, str]:
+    """Resolve score identities from optional selectors or source paths."""
+    functions = normalized.functions.values()
+    paths = sorted({function.path for function in functions if function.path})
+    selector_a = binary_a or source_binary_a
+    selector_b = binary_b or source_binary_b
+    resolved_a = _resolve_binary(selector_a, functions) if selector_a else None
+    resolved_b = _resolve_binary(selector_b, functions) if selector_b else None
+
+    if resolved_a is None and resolved_b is not None:
+        remaining = [path for path in paths if path != resolved_b]
+        if len(remaining) == 1:
+            resolved_a = remaining[0]
+    elif resolved_b is None and resolved_a is not None:
+        remaining = [path for path in paths if path != resolved_a]
+        if len(remaining) == 1:
+            resolved_b = remaining[0]
+    elif resolved_a is None and resolved_b is None:
+        left_paths = {score.left.path for score in normalized.scores}
+        right_paths = {score.right.path for score in normalized.scores}
+        if len(left_paths) == 1 and len(right_paths) == 1:
+            resolved_a = next(iter(left_paths))
+            resolved_b = next(iter(right_paths))
+
+    if resolved_a is None or resolved_b is None:
+        raise ComparisonError(
+            "Cannot infer Binary A and Binary B from scores.csv; provide source "
+            "paths or the optional --binary-a/--binary-b selectors"
+        )
+    return resolved_a, resolved_b
+
+
 def create_report(
     *,
     model_name: str,
     normalized: NormalizedModelOutput,
     output_path: Path,
-    binary_a: str,
-    binary_b: str,
+    binary_a: str | None = None,
+    binary_b: str | None = None,
+    source_binary_a: str | None = None,
+    source_binary_b: str | None = None,
     variant: str | None = None,
     top_n: int = DEFAULT_TOP_N,
     min_similarity: float = DEFAULT_MIN_SIMILARITY,
@@ -73,8 +113,13 @@ def create_report(
     if not math.isfinite(min_similarity):
         raise ComparisonError("min_similarity must be finite")
     functions = normalized.functions
-    resolved_a = _resolve_binary(binary_a, functions.values())
-    resolved_b = _resolve_binary(binary_b, functions.values())
+    resolved_a, resolved_b = _resolve_binary_pair(
+        normalized,
+        binary_a,
+        binary_b,
+        source_binary_a,
+        source_binary_b,
+    )
     if resolved_a == resolved_b:
         raise ComparisonError("Binary A and binary B must be different")
     functions_a = sorted(
@@ -130,7 +175,10 @@ def create_report(
     report = {
         "schema_version": SCHEMA_VERSION,
         "model": {"name": model_name, "variant": variant or "default"},
-        "binaries": {"a": {"path": resolved_a}, "b": {"path": resolved_b}},
+        "binaries": {
+            "a": {"path": canonical_path(source_binary_a or binary_a or resolved_a)},
+            "b": {"path": canonical_path(source_binary_b or binary_b or resolved_b)},
+        },
         "score_semantics": "higher_is_more_similar",
         "top_n": top_n,
         "min_similarity": min_similarity,
@@ -197,8 +245,22 @@ def build_parser() -> argparse.ArgumentParser:
         description="Create a two-binary function match report from normalized scores"
     )
     parser.add_argument("--scores", required=True, type=Path)
-    parser.add_argument("--binary-a", required=True)
-    parser.add_argument("--binary-b", required=True)
+    parser.add_argument(
+        "--binary-a",
+        help="Optional Binary-A selector for ambiguous scores",
+    )
+    parser.add_argument(
+        "--binary-b",
+        help="Optional Binary-B selector for ambiguous scores",
+    )
+    parser.add_argument(
+        "--source-binary-a",
+        help="Source Binary-A path used for orientation and report display",
+    )
+    parser.add_argument(
+        "--source-binary-b",
+        help="Source Binary-B path used for orientation and report display",
+    )
     parser.add_argument("--model", required=True)
     parser.add_argument("--variant")
     parser.add_argument("--top-n", type=int, default=DEFAULT_TOP_N)
@@ -226,6 +288,8 @@ def main() -> int:
             output_path=args.output,
             binary_a=args.binary_a,
             binary_b=args.binary_b,
+            source_binary_a=args.source_binary_a,
+            source_binary_b=args.source_binary_b,
             variant=args.variant,
             top_n=args.top_n,
             min_similarity=args.min_similarity,

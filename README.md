@@ -143,11 +143,17 @@ score serialization. Shared parsing and similarity helpers live in
 
 [`src/generate_report.py`](src/generate_report.py) consumes only `scores.csv`:
 
+The main pipeline automatically records its original binary paths in the
+report. For standalone report generation, `--source-binary-a` and
+`--source-binary-b` both establish the A/B orientation and set the displayed
+paths. The separate `--binary-a` and `--binary-b` selectors are optional and
+are needed only when source basenames are ambiguous in `scores.csv`.
+
 ```bash
 python3 src/generate_report.py \
   --scores output/scores.csv \
-  --binary-a firmware-v1.gpr \
-  --binary-b firmware-v2.gpr \
+  --source-binary-a input/firmware-v1 \
+  --source-binary-b input/firmware-v2 \
   --model catalog1 \
   --top-n 3 \
   --min-similarity 0 \
@@ -158,11 +164,11 @@ python3 src/generate_report.py \
 
 ```json
 {
-  "schema_version": "1.2",
+  "schema_version": "1.3",
   "model": {"name": "catalog1", "variant": "default"},
   "binaries": {
-    "a": {"path": "firmware-v1.gpr"},
-    "b": {"path": "firmware-v2.gpr"}
+    "a": {"path": "input/firmware-v1"},
+    "b": {"path": "input/firmware-v2"}
   },
   "score_semantics": "higher_is_more_similar",
   "top_n": 3,

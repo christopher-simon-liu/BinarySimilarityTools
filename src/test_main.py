@@ -134,6 +134,14 @@ class PipelineArgumentsTest(unittest.TestCase):
             "0.0",
         )
         self.assertEqual(
+            report_command[report_command.index("--source-binary-a") + 1],
+            str(binary_a),
+        )
+        self.assertEqual(
+            report_command[report_command.index("--source-binary-b") + 1],
+            str(binary_b),
+        )
+        self.assertEqual(
             Path(report_command[report_command.index("--output") + 1]),
             output_dir / "catalog1_report_firmware-a_firmware-b.json",
         )
